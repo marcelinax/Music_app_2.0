@@ -1,5 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
+import songsSlice from './state/songsSlice';
 
 export default configureStore({
-	reducer: {},
-})
+	reducer: {
+		songs: songsSlice
+	},
+});

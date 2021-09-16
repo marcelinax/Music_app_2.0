@@ -1,12 +1,14 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const MusicPlayer = () => {
+	const history = useHistory();
 	return (
 		<div className={'music-player'}>
 			<div className={'music-player-top'}>
 				<button><i className="bx bxs-left-arrow-alt"/></button>
 				<p>PLAYING NOW</p>
-				<button><i className="bx bx-menu"/></button>
+				<button onClick={() => history.push('/songs-list')}><i className="bx bx-menu"/></button>
 			</div>
 			<div className={'music-player-main'}></div>
 			<div className={'music-player-bottom'}>
