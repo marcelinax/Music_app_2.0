@@ -40,8 +40,114 @@ body {
 
 .music-player {
 
-  justify-content: space-between;
 
+  &-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.2rem;
+    margin-bottom: 5rem;
+
+    &-song-cover {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 8px solid #C3D0E1;
+      box-shadow: 5px 5px 21px #b0b7c2, -5px -5px 21px #ffffff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 2rem;
+    }
+
+    &-song-info {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+
+      .song-title {
+        color: #6C7A93;
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      .song-author {
+        color: #B0BDD1;
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
+
+    &-song-duration {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 2.3rem;
+
+      .duration-box {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3px;
+
+        p {
+          color: #ADBACE;
+          font-size: 8px;
+          font-weight: 600;
+
+        }
+      }
+
+      .duration-bar {
+        width: 100%;
+        background: transparent;
+        box-shadow: inset 5px 5px 5px #dae2ef, inset -5px -5px 5px #f0faff;
+        height: 4px;
+        border: 2px solid #CEDBEE;
+        border-radius: 20px;
+
+        &-bg {
+          border-radius: 20px;
+          height: 4px;
+          background-color: #89AAFF;
+          width: 100px;
+          position: relative;
+          top: -2px;
+          left: -2px;
+          border: 2px solid #89AAFF;
+
+
+        }
+
+        &-circle {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: #EAF5FF;
+          top: -9px;
+          left: 100px;
+          position: absolute;
+          border: 3px solid #E5F2FF;
+          box-shadow: 8px 8px 16px #c7cfdb, -8px -8px 16px transparent;
+
+          &::after {
+            content: '';
+            border-radius: 50%;
+            background-color: #89AAFF;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 2.5px;
+            left: 2.5px;
+            display: flex;
+
+          }
+        }
+      }
+    }
+  }
 
   &-bottom {
     display: flex;
