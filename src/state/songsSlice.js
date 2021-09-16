@@ -24,9 +24,17 @@ export const songsSlice = createSlice({
 				album,
 				coverUrl,
 				audioUrl,
+				isLiked: false,
 				id: uuidv4()
 			};
 			state.songs = [...state.songs, newSong];
+			saveSongsInLocalStorage(state.songs);
+		},
+		likeSong: (state, action) => {
+			const { id } = action.payload;
+			const likeStartIndex = state.songs.map(song => song.id).indexOf(id);
+			state.songs[likeStartIndex].isLiked = !state.songs[likeStartIndex].isLiked;
+			state.songs = [...state.songs];
 			saveSongsInLocalStorage(state.songs);
 		}
 	}
@@ -34,5 +42,5 @@ export const songsSlice = createSlice({
 
 });
 
-export const { setSong } = songsSlice.actions;
+export const { setSong, likeSong } = songsSlice.actions;
 export default songsSlice.reducer;

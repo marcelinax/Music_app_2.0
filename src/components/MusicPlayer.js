@@ -1,14 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { likeSong } from '../state/songsSlice';
 
 const MusicPlayer = () => {
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const songs = useSelector(state => state.songs.songs);
+
 	return (
 		<div className={'music-player'}>
 			<div className={'music-player-top'}>
-				<button><i className="bx bxs-left-arrow-alt"/></button>
+				<button onClick={() => {
+					dispatch(likeSong({ id: songs[0].id }));
+				}}><i className="bx bxs-heart" style={{ color: songs[0].isLiked ? 'red' : '' }}/></button>
 				<p>PLAYING NOW</p>
 				<button onClick={() => history.push('/songs-list')}><i className="bx bx-menu"/></button>
 			</div>
