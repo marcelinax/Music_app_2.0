@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { likeSong } from '../state/songsSlice';
@@ -32,11 +32,6 @@ const MusicPlayer = () => {
 		else setCurrentSongId(songs[songIndex - 1].id);
 	};
 
-	useEffect(() => {
-		console.log(currentSong());
-		console.log(getCurrentSongIndex());
-	}, [currentSong]);
-
 
 	const renderMusicPlayer = () => {
 		return <div className={'music-player'}>
@@ -68,7 +63,10 @@ const MusicPlayer = () => {
 			<div className={'music-player-bottom'}>
 				<div className={'music-player-bottom-buttons'}>
 					<button onClick={goPreviousSong}><i className="bx bx-rewind"/></button>
-					<button><i className="bx bx-play"/></button>
+					{/*<iframe src={currentSong().audioUrl}/>*/}
+					<button>
+						<iframe src={'https://www.youtube.com/watch?v=ParfVjvLFWo&list=RDParfVjvLFWo&start_radio=1'} type={'text/html'}/>
+						<i className="bx bx-play"/></button>
 					<button onClick={goNextSong}><i className="bx bx-fast-forward"/></button>
 				</div>
 			</div>
