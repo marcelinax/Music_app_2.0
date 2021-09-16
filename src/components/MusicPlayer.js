@@ -63,9 +63,7 @@ const MusicPlayer = () => {
 			<div className={'music-player-bottom'}>
 				<div className={'music-player-bottom-buttons'}>
 					<button onClick={goPreviousSong}><i className="bx bx-rewind"/></button>
-					{/*<iframe src={currentSong().audioUrl}/>*/}
 					<button>
-						<iframe src={'https://www.youtube.com/watch?v=ParfVjvLFWo&list=RDParfVjvLFWo&start_radio=1'} type={'text/html'}/>
 						<i className="bx bx-play"/></button>
 					<button onClick={goNextSong}><i className="bx bx-fast-forward"/></button>
 				</div>

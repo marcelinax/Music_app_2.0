@@ -1,15 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MusicPlayerListSongsItem from './MusicPlayerListSongsItem';
+import { deleteSong } from '../state/songsSlice';
 
 const MusicPlayerListSongs = () => {
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const songs = useSelector(state => state.songs.songs);
 
 	const renderSongs = () => {
 		return songs.map(song => (
-			<MusicPlayerListSongsItem author={song.author} title={song.title} album={song.album}/>
+			<MusicPlayerListSongsItem author={song.author} title={song.title} album={song.album} deleteSong={() => dispatch(deleteSong({ id: song.id }))}/>
 		));
 	};
 

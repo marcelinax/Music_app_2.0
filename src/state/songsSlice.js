@@ -36,11 +36,18 @@ export const songsSlice = createSlice({
 			state.songs[likeStartIndex].isLiked = !state.songs[likeStartIndex].isLiked;
 			state.songs = [...state.songs];
 			saveSongsInLocalStorage(state.songs);
+		},
+		deleteSong: (state, action) => {
+			const { id } = action.payload;
+			const deleteStartIndex = state.songs.map(song => song.id).indexOf(id);
+			state.songs.splice(deleteStartIndex, 1);
+			state.songs = [...state.songs];
+			saveSongsInLocalStorage(state.songs);
 		}
 	}
 
 
 });
 
-export const { setSong, likeSong } = songsSlice.actions;
+export const { setSong, likeSong, deleteSong } = songsSlice.actions;
 export default songsSlice.reducer;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MusicPlayerListSongsItem = ({ title, author, album }) => {
+const MusicPlayerListSongsItem = ({ title, author, album, deleteSong, id }) => {
 	return (
 		<div className={'music-player-list-songs-item'}>
 			<div className={'music-player-list-songs-item-info'}>
@@ -9,7 +9,7 @@ const MusicPlayerListSongsItem = ({ title, author, album }) => {
 			</div>
 			<div className={'music-player-list-songs-item-buttons'}>
 				<button><i className="bx bx-play"/></button>
-				<button><i className="bx bxs-trash-alt"/></button>
+				<button onClick={deleteSong}><i className="bx bxs-trash-alt"/></button>
 			</div>
 		</div>
 	);
