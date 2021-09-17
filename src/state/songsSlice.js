@@ -8,11 +8,19 @@ const saveSongsInLocalStorage = (state) => {
 const loadSongsFromLocalStorage = () => {
 	return JSON.parse(localStorage.getItem('songs') || '[]');
 };
+const saveCurrentSongIdInLocalStorage = (state) => {
+	localStorage.setItem('currentSongId', state);
+};
+
+const loadCurrentSongIdFromLocalStorage = () => {
+	return localStorage.getItem('currentSongId') || loadSongsFromLocalStorage()[0].id;
+};
 
 export const songsSlice = createSlice({
 	name: 'songs',
 	initialState: {
-		'songs': loadSongsFromLocalStorage()
+		'songs': loadSongsFromLocalStorage(),
+		'currentSongId': loadCurrentSongIdFromLocalStorage()
 	},
 	reducers: {
 		setSong: (state, action) => {
@@ -42,12 +50,23 @@ export const songsSlice = createSlice({
 			const deleteStartIndex = state.songs.map(song => song.id).indexOf(id);
 			state.songs.splice(deleteStartIndex, 1);
 			state.songs = [...state.songs];
+			if (state.currentSongId === id) {
+				state.currentSongId = state.songs[0].id;
+				saveCurrentSongIdInLocalStorage(state.currentSongId);
+			}
 			saveSongsInLocalStorage(state.songs);
+		},
+		setCurrentSongIdentifier: (state, action) => {
+			const { id } = action.payload;
+			const index = state.songs.map(song => song.id).indexOf(id);
+			state.currentSongId = state.songs[index].id;
+			saveCurrentSongIdInLocalStorage(state.currentSongId);
 		}
+
 	}
 
 
 });
 
-export const { setSong, likeSong, deleteSong } = songsSlice.actions;
+export const { setSong, likeSong, deleteSong, setCurrentSongIdentifier } = songsSlice.actions;
 export default songsSlice.reducer;

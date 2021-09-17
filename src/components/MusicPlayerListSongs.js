@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import MusicPlayerListSongsItem from './MusicPlayerListSongsItem';
-import { deleteSong } from '../state/songsSlice';
+import { deleteSong, likeSong } from '../state/songsSlice';
 
 const MusicPlayerListSongs = () => {
 	const history = useHistory();
@@ -11,7 +11,16 @@ const MusicPlayerListSongs = () => {
 
 	const renderSongs = () => {
 		return songs.map(song => (
-			<MusicPlayerListSongsItem author={song.author} title={song.title} album={song.album} deleteSong={() => dispatch(deleteSong({ id: song.id }))}/>
+			<MusicPlayerListSongsItem author={song.author} title={song.title} album={song.album} deleteSong={(e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				dispatch(deleteSong({ id: song.id }));
+			}}
+																likeSong={(e) => {
+																	e.preventDefault();
+																	e.stopPropagation();
+																	dispatch(likeSong({ id: song.id }));
+																}} isLiked={song.isLiked} id={song.id}/>
 		));
 	};
 
